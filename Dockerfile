@@ -12,15 +12,16 @@ RUN yum -y update \
   && yum -y install yum-utils \
   && rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8 \
   && yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-RUN yum install -y crontab clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
+RUN yum install -y clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 RUN yum install -y wget
-
+RUN yum repolist
+RUN yum search crontab
 COPY config/clamd.conf /etc/clamd.conf
 COPY config/freshclam.conf /etc/freshclam.conf
-COPY crontab /etc/cron.d/
-RUN chmod 0644 /etc/cron.d/crontab
-RUN crontab /etc/cron.d/crontab
-RUN touch /var/log/cron.log
+#COPY crontab /etc/cron.d/
+#RUN chmod 0644 /etc/cron.d/crontab
+#RUN crontab /etc/cron.d/crontab
+#RUN touch /var/log/cron.log
 
 RUN mkdir /opt/app-root
 RUN mkdir /opt/app-root/src
@@ -40,4 +41,5 @@ USER 1001
 
 EXPOSE 3310
 
-CMD cron && freshclam && clamd -c /etc/clamd.conf
+#CMD cron && freshclam && clamd -c /etc/clamd.conf
+CMD clamd -c /etc/clamd.conf
