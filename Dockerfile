@@ -41,5 +41,4 @@ USER 1001
 
 EXPOSE 3310
 
-#CMD cron && freshclam && clamd -c /etc/clamd.conf
-CMD clamd -c /etc/clamd.conf
+CMD cron && freshclam && clamd -c /etc/clamd.conf
