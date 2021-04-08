@@ -12,7 +12,7 @@ RUN yum -y update \
   && yum -y install yum-utils \
   && rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8 \
   && yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-RUN yum install -y vixie-cron clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
+RUN yum install -y crontab clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 RUN yum install -y wget
 
 COPY config/clamd.conf /etc/clamd.conf
