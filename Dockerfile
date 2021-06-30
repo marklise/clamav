@@ -1,7 +1,6 @@
-FROM openshift/base-centos7
+FROM registry.access.redhat.com/rhel
 
 
-RUN yum -y install epel-release
 RUN yum -y update
 RUN yum clean all
 RUN yum install -y clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
